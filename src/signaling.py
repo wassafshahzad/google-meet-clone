@@ -1,6 +1,4 @@
 from fastapi.websockets import WebSocket
-from uuid import UUID
-
 class SignalManager:
     def __init__(self):
         self.active_connections: list[WebSocket] = []
@@ -27,9 +25,9 @@ class SignalManager:
 # Use reddis to handle channel subscriptions
 class MeetingManager:
     def __init__(self) -> None:
-        self.rooms: dict[UUID, SignalManager] = {} 
+        self.rooms: dict[str, SignalManager] = {} 
 
-    async def join(self, id:UUID, websocket: WebSocket):
+    async def join(self, id: str, websocket: WebSocket):
         if id in self.rooms:
             await self.rooms[id].connect(websocket)
         else:
@@ -37,7 +35,7 @@ class MeetingManager:
             await self.rooms[id].connect(websocket)
         await self.rooms[id].broadcast({"type":"USER_JOIN"}, websocket)
     
-    def leave(self, id: UUID, websocket: WebSocket):
+    def leave(self, id: str, websocket: WebSocket):
         self.rooms[id].disconnect(websocket)
         if self.rooms[id].is_empty:
             del self.rooms[id] 

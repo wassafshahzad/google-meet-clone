@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% block script  %}
+    <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', path='/lobby.css') }}">
+    <script src="{{ url_for('static', path='/lobby.js') }}""></script>
+{% endblock %}
+{% block content %}
+    <div class="main-container">
+            <div>
+                <h1>Video Call for Every One</h1>
+                <div class="input-row">
+                    <div>
+                        <button  type="button" class="btn btn-success" onclick="createRoom()">Create room</button>
+                    </div>
+                    <div class="input-container">
+                        <input id="createRoom" class="form-control" placeholder="Enter room name">
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}

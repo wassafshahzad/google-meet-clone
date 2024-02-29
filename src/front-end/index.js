@@ -15,7 +15,8 @@ let init = async () => {
 };
 
 let connect = async () => {
-  socket = new WebSocket("ws://localhost:8000/ws/100");
+  let roomName = window.location.pathname.split("/")[1]
+  socket = new WebSocket(`ws://localhost:8000/ws/${roomName}"`);
   socket.onopen = (_) => {
     console.log("Connected succesfully");
   };

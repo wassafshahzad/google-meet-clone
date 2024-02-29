@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>PeerChat</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+{% extends "main.html" %}
+{% block script  %}
     <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', path='/index.css') }}">
     <script src="{{ url_for('static', path='/index.js') }}""></script>
-</head>
-<body>
+{% endblock %}
+{% block content %}
     <div id="videos">
         <video class="video-player" id="user-1" autoplay></video>
         <video class="video-player" id="user-2" autoplay></video>
     </div>
-    
-</body>
-</html>
+{% endblock %}
