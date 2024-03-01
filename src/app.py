@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 from fastapi.websockets import WebSocket, WebSocketDisconnect
 
-from signaling import MeetingManager
+from .signaling import MeetingManager
 
 
 app = FastAPI()
