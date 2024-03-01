@@ -1,5 +1,4 @@
 {
-    "devCommand": "uvicorn app:app --host 0.0.0.0 --port 3000",
     "builds": [
       {"src": "/src/app.py", "use": "@now/python"}
     ],
