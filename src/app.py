@@ -4,10 +4,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 from fastapi.websockets import WebSocket, WebSocketDisconnect
 from signaling import MeetingManager
+import pathlib
+pathlib.Path(__file__).parent.resolve()
 
 app = FastAPI()
 
-app.mount("/static", staticfiles.StaticFiles(directory=f"front-end"), name="static")
+app.mount("/static", staticfiles.StaticFiles(directory=f"{str(pathlib.Path(__file__).parent.resolve())}\\front-end"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 meeting_manager = MeetingManager()
