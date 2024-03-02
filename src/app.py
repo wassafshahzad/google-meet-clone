@@ -3,7 +3,7 @@ from fastapi import FastAPI, staticfiles, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 from fastapi.websockets import WebSocket, WebSocketDisconnect
-from .signaling import SignalManager
+from signaling import MeetingManager
 
 import os 
 dir_path = os.path.dirname(os.path.realpath(__file__))
