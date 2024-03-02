@@ -1,17 +1,16 @@
 
-from http import client
-from uuid import UUID
 from fastapi import FastAPI, staticfiles, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 from fastapi.websockets import WebSocket, WebSocketDisconnect
+from .signaling import SignalManager
 
-from .signaling import MeetingManager
-
+import os 
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 app = FastAPI()
 
-app.mount("/static", staticfiles.StaticFiles(directory=f"front-end"), name="static")
+app.mount("/static", staticfiles.StaticFiles(directory=f"{dir_path}\\front-end"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 meeting_manager = MeetingManager()
