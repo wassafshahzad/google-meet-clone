@@ -8,7 +8,7 @@ from signaling import MeetingManager
 
 app = FastAPI()
 
-app.mount("/static", staticfiles.StaticFiles(directory=f"front-end"), name="static")
+app.mount("/static", staticfiles.StaticFiles(directory="front-end"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 meeting_manager = MeetingManager()
