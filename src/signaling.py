@@ -38,6 +38,6 @@ class MeetingManager:
     def leave(self, id: str, websocket: WebSocket):
         self.rooms[id].disconnect(websocket)
         if self.rooms[id].is_empty:
-            del self.rooms[id] 
+            del self.rooms[id]
         
 
