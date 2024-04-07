@@ -1,5 +1,6 @@
 
 from fastapi import FastAPI, staticfiles, Request
+from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 from fastapi.websockets import WebSocket, WebSocketDisconnect
@@ -22,9 +23,8 @@ app.add_middleware(
 )
 
 @app.get("/")
-def read_root():
-    return {"message": "Hello World"}
-
+def home(): # type: ignore
+    return RedirectResponse("/lobby")
 
 @app.get("/room/{roomName}")
 def read_root(request: Request, roomName:str):
@@ -37,7 +37,6 @@ def get_lobby(request: Request):
 @app.websocket("/ws/{client_id}")
 async def connet_websocket(websocket: WebSocket, client_id: str):
     await meeting_manager.join(client_id, websocket)
-    await meeting_manager.rooms[client_id].broadcast({"type": "NEW_USER"}, websocket)
     try:
         while True:
             data = await websocket.receive_json()
